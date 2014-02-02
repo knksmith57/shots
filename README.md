@@ -34,7 +34,7 @@ $ open http://localhost:8080/returned_image_id_here
 
 ## Notes
 
-1. I'm a little drunk right now
+1. ~~I'm a little drunk right now~~ No longer drunk.
 2. This is my first hack at a sinatra app
 3. LOLOL @ [`main.css`](public/css/main.css)
 
