@@ -1,0 +1,13 @@
+# db files that are generated for us
+db/db.sqlite3
+db/schema.rb
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+

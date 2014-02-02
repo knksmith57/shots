@@ -1,0 +1,5 @@
+.header
+  %h2 #{img.title}
+  %p Created #{img.created_at.strftime("%m/%d/%Y @ %R")}
+
+%img(src= "#{request.base_url + '/' + img.image_id + '/raw'}")
