@@ -1,0 +1,4 @@
+shots
+=====
+
+Self-Hosted Screenshots
