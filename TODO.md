@@ -1,0 +1,5 @@
+- Implement actual JWTs. Use [this node.js example for reference](http://coderead.wordpress.com/2012/08/16/securing-node-js-restful-services-with-jwt-tokens/)
+- make this not-look like shit
+- CLI wrapper around cURL for uploads
+- image captions
+- mini token management page
