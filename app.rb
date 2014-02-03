@@ -16,7 +16,7 @@ end
 
 get '/:image_id' do
   # render the image inside of a minimal UI
-  img = Image.find_by :image_id => params[:image_id]
+  img = image(params[:image_id])
   if img.nil?
     status 404
     return haml :no_image

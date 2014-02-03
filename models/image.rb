@@ -18,3 +18,7 @@ class Image < ActiveRecord::Base
   end
 
 end
+
+def image(image_id)
+  img = Image.find_by(:image_id => image_id)
+end
