@@ -8,10 +8,8 @@ class InitDb < ActiveRecord::Migration
       t.datetime  :created_at
       t.datetime  :last_accessed_at
     end
-  end
 
-  def up
-    create_table :tokens do |t|
+    create_table  :tokens do |t|
       t.string    :token_id
       t.datetime  :expires_at
       t.datetime  :last_accessed_at
