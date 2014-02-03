@@ -16,33 +16,31 @@ end
 
 get '/:image_id' do
   # render the image inside of a minimal UI
-  @img = Image.find_by :image_id => params[:image_id]
-  if @img.nil?
+  img = Image.find_by :image_id => params[:image_id]
+  if img.nil?
     status 404
     return haml :no_image
   end
 
-  haml :image, :locals => {:img => @img}
+  haml :image, :locals => {:img => img}
 end
 
 get '/:image_id/raw' do
   # return the actual image file
-  @img = Image.find_by :image_id => params[:image_id]
-  return status 404 if @img.nil?
-  send_file @img.path!
+  img = Image.find_by :image_id => params[:image_id]
+  return status 404 if img.nil?
+  send_file img.path!
 end
 
 
 post '/add' do
   # make sure 2 things:
-  unless  ((@token  = request.env['HTTP_X_TOKEN'])        &&  # 1. token provided and valid
-           (@token  = Token.find_by(:token_id => @token)) &&
-           (@token.valid?))
+  unless  (toke  = token(request.env['HTTP_X_TOKEN']))      # 1. token provided and valid
     # need to provide a valid token!
     return status 401
   end
-  unless  ((params[:file])                                &&  # 2. provided a file
-           (tmpfile  = params[:file][:tempfile])          &&
+  unless  ((params[:file])                              &&  # 2. provided a file
+           (tmpfile  = params[:file][:tempfile])        &&
            (filename = params[:file][:filename]))
     # need to provide a file!
     return status 404
@@ -53,17 +51,16 @@ post '/add' do
   meow = DateTime.now
 
   # update token last accessed timestamp
-  @token.last_accessed_at = meow
-  @token.save!
+  toke.last_accessed_at = meow
+  toke.save!
 
   # store image meta in database
-  @img = Image.new(:title => filename, :extension => File.extname(filename), :created_at => meow)
-  @img.save!
+  img = Image.new(:title => filename, :extension => File.extname(filename), :created_at => meow)
+  img.save!
 
   # copy the image from temp space to the uploads directory
-  FileUtils.copy(tmpfile.path, @img.path!)
+  FileUtils.copy(tmpfile.path, img.path!)
 
-  @img.image_id
-
+  img.image_id
 end
 

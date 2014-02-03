@@ -21,3 +21,8 @@ class Token < ActiveRecord::Base
     self.expires_at > DateTime.now
   end
 end
+
+def token(token_id)
+  t = Token.find_by(:token_id => token_id)
+  t.try(:valid?) ? t : nil
+end
