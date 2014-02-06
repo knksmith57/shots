@@ -4,6 +4,7 @@ class Image < ActiveRecord::Base
 
   before_validation :generate_id
 
+  # [todo] - Figure out a way to make the "uploads/" prefix a config option
   def path!
     # return the image's full path from the root ==
     "uploads/" + self.image_id + self.extension
@@ -19,6 +20,7 @@ class Image < ActiveRecord::Base
 
 end
 
+# [todo] - On access to a valid image, update time stamps / tracking info
 def image(image_id)
   img = Image.find_by(:image_id => image_id)
 end

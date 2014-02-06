@@ -11,3 +11,6 @@ Icon
 .Spotlight-V100
 .Trashes
 
+# watson config (holds secret tokens and whatnot)
+.watsonrc
+.watsonresults

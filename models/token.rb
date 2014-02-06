@@ -1,3 +1,5 @@
+# [fix] - Implement an actual JWT schema for tokens
+
 class Token < ActiveRecord::Base
   validates_uniqueness_of :token_id
 
@@ -22,6 +24,7 @@ class Token < ActiveRecord::Base
   end
 end
 
+# [todo] - On access to a valid token, update time stamps / tracking info
 def token(token_id)
   t = Token.find_by(:token_id => token_id)
   t.try(:valid?) ? t : nil

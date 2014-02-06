@@ -19,7 +19,8 @@ namespace :token do
     end
   end
 
-  ## TODO: this doesn't work right now, can't figure out the syntax
+  # [fix] - This doesn't work right now, can't figure out the syntax
+  # [todo] - Don't actually destroy the token, just disable it
   desc "Deactivate a token"
   task :deactivate, :id do |t, id|
     puts id

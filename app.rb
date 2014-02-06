@@ -9,6 +9,7 @@ set :port, 8080
 set :database, "sqlite3:///db/db.sqlite3"
 
 
+# [todo] - Figure out what the default behavior should be
 get '/' do
   # maybe should show an empty page? or a login page?
   haml :index
@@ -27,7 +28,7 @@ end
 
 get '/:image_id/raw' do
   # return the actual image file
-  img = Image.find_by :image_id => params[:image_id]
+  img = image(params[:image_id])
   return status 404 if img.nil?
   send_file img.path!
 end
